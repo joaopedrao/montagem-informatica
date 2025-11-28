@@ -349,11 +349,88 @@
     margin-bottom: 20px;
   }
   
-  /* small responsiveness tweaks */
+  /* Menu Responsivo */
   @media(max-width:768px){
     .site-header .nav-links { 
       display: none; 
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #071029;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 1000;
     }
+
+    .site-header .nav-links.active {
+      display: flex;
+    }
+
+    .site-header .nav-links a {
+      margin: 10px 0;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      width: 100%;
+      text-align: center;
+      margin-left: 0;
+    }
+
+    .site-header .nav-links a:last-child {
+      border-bottom: none;
+    }
+
+    .site-header .nav-links a.active:after {
+      display: none;
+    }
+
+    /* Menu Hamburger */
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Header actions em mobile */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Ajustes no container do header */
+    .site-header .container {
+      position: relative;
+    }
+
     .hero { 
       padding: 36px 12px; 
     }
@@ -371,212 +448,215 @@
     }
   }
 
-
-
-  /* Estilos adicionais para as páginas criadas */
-
-/* Service page styles */
-.service-icon {
-  font-size: 2.5rem;
-  color: var(--accent);
-}
-
-.service-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.service-desc {
-  color: #6b7280;
-  margin-bottom: 15px;
-  line-height: 1.6;
-}
-
-.service-features {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 20px;
-}
-
-.service-features li {
-  margin-bottom: 8px;
-  padding-left: 20px;
-  position: relative;
-}
-
-.service-features li:before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: bold;
-}
-
-.btn-service {
-  display: inline-block;
-  background: var(--accent);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-service:hover {
-  background: #e56a00;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255,122,0,0.3);
-}
-
-/* About page styles */
-.about-icon {
-  font-size: 2.5rem;
-  color: var(--accent);
-}
-
-/* Auth page styles */
-.auth-container {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-}
-
-.auth-card {
-  background: white;
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 450px;
-}
-
-.auth-title {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.auth-switch {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.auth-switch a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.form-label {
-  font-weight: 600;
-  margin-bottom: 8px;
-  display: block;
-}
-
-/* Confirmation message */
-.confirmation-message {
-  background: white;
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-  text-align: center;
-  max-width: 500px;
-  margin: 50px auto;
-}
-
-.confirmation-icon {
-  font-size: 4rem;
-  color: #10b981;
-  margin-bottom: 20px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .auth-card {
-    padding: 30px 20px;
+  /* Para telas maiores, esconder o menu toggle */
+  @media (min-width: 769px) {
+    .menu-toggle {
+      display: none;
+    }
+    
+    .site-header .nav-links {
+      display: flex !important;
+    }
   }
-  
-  .service-card, .product-card {
+
+  /* Estilos para o modal de confirmação de checkout */
+  .confirmation-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+
+  .modal-header {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .modal-body {
+    padding: 0 1.5rem;
+  }
+
+  .modal-footer {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  /* Animação suave para o ícone de confirmação */
+  .confirmation-icon i {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  @keyframes scaleIn {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    70% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Efeito de pulso para o botão de confirmação */
+  .btn-pulse {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 122, 0, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+    }
+  }
+
+  /* Service page styles */
+  .service-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+  }
+
+  .service-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .service-desc {
+    color: #6b7280;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  .service-features {
+    list-style: none;
+    padding: 0;
     margin-bottom: 20px;
   }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
+
+  .service-features li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
   }
-}
 
-
-.bg-accent {
-  background: var(--accent) !important;
-}
-
-
-/* Adicione isso ao final do arquivo style.css */
-
-/* Estilos para o modal de confirmação de checkout */
-.confirmation-icon {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-}
-
-.modal-content {
-  border-radius: 15px;
-  border: none;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-}
-
-.modal-header {
-  padding: 1.5rem 1.5rem 0;
-}
-
-.modal-body {
-  padding: 0 1.5rem;
-}
-
-.modal-footer {
-  padding: 0 1.5rem 1.5rem;
-}
-
-/* Animação suave para o ícone de confirmação */
-.confirmation-icon i {
-  animation: scaleIn 0.5s ease-out;
-}
-
-@keyframes scaleIn {
-  0% {
-    transform: scale(0);
-    opacity: 0;
+  .service-features li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
   }
-  70% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 
-/* Efeito de pulso para o botão de confirmação */
-.btn-pulse {
-  animation: pulse 2s infinite;
-}
+  .btn-service {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+  }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.4);
+  .btn-service:hover {
+    background: #e56a00;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,122,0,0.3);
   }
-  70% {
-    box-shadow: 0 0 0 10px rgba(255, 122, 0, 0);
+
+  /* About page styles */
+  .about-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
   }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+
+  /* Auth page styles */
+  .auth-container {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
   }
-}
+
+  .auth-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .auth-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .auth-switch {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .auth-switch a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .form-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* Confirmation message */
+  .confirmation-message {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 500px;
+    margin: 50px auto;
+  }
+
+  .confirmation-icon {
+    font-size: 4rem;
+    color: #10b981;
+    margin-bottom: 20px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .auth-card {
+      padding: 30px 20px;
+    }
+    
+    .service-card, .product-card {
+      margin-bottom: 20px;
+    }
+    
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .bg-accent {
+    background: var(--accent) !important;
+  }

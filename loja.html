@@ -13,19 +13,30 @@
   <header class="site-header">
     <div class="container flex items-center justify-between">
       <a class="brand" href="index.html">INF PRO</a>
-      <nav class="nav-links">
+      
+      <!-- Menu Hamburger para mobile -->
+      <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="loja.html" class="active">Loja</a>
         <a href="servicos.html">Serviços</a>
         <a href="sobre.html">Sobre</a>
         <a href="contato.html">Contato</a>
       </nav>
+      
       <div class="header-actions">
         <button id="themeToggle2" class="btn-theme">🌙</button>
         <a href="login.html" class="btn btn-sm btn-outline">Entrar</a>
       </div>
     </div>
   </header>
+
+  <!-- ... resto do conteúdo da loja.html permanece igual ... -->
 
   <main class="container py-10">
     <div class="flex justify-between items-center mb-6 flex-col md:flex-row gap-4">

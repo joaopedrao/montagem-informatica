@@ -19,6 +19,43 @@ function addToCart(product){
   updateCartUI(); // ADICIONADO: Atualizar a UI do carrinho
 }
 
+
+
+// Função para toggle do menu mobile
+function setupMobileMenu() {
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+    
+    // Fechar menu ao clicar em um link
+    const navLinksItems = navLinks.querySelectorAll('a');
+    navLinksItems.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+      });
+    });
+    
+    // Fechar menu ao redimensionar a tela para desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+      }
+    });
+  }
+}
+
+
+
+
+
+
 function removeFromCart(id){
   let cart = loadCart();
   cart = cart.filter(i=>i.id!==id);
@@ -590,4 +627,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
       wrap: true
     });
   }
+
+
+  
+});
+
+// No final do DOMContentLoaded, adicione:
+document.addEventListener('DOMContentLoaded', ()=>{
+  // ... código existente ...
+  
+  // Inicializar menu mobile
+  setupMobileMenu();
+  
+  // ... resto do código ...
 });
